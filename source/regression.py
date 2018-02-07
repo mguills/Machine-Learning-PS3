@@ -180,9 +180,11 @@ class PolynomialRegression() :
                 # part d: update theta (self.coef_) using one step of SGD
                 # hint: you can simultaneously update all theta using vector math
 
+                self.coef_ = self.coef_ - eta * (np.dot(self.coef_, X[i]) - y[i]) * X[i]
+
                 # track error
                 # hint: you cannot use self.predict(...) to make the predictions
-                y_pred = y # change this line
+                y_pred = np.dot(X, self.coef_) # change this line
                 err_list[t] = np.sum(np.power(y - y_pred, 2)) / float(n)
                 ### ========== TODO : END ========== ###
 
@@ -254,7 +256,9 @@ class PolynomialRegression() :
         X = self.generate_polynomial_features(X) # map features
 
         ### ========== TODO : START ========== ###
-        y = dot(X, self.coef_)
+
+        y = np.dot(X, self.coef_)
+
         ### ========== TODO : END ========== ###
 
         return y
@@ -274,8 +278,14 @@ class PolynomialRegression() :
             cost    -- float, objective J(theta)
         """
         ### ========== TODO : START ========== ###
-        # part d: compute J(theta)
+        n,d = X.shape
         cost = 0
+
+        error = self.predict(X) - y
+        for i in range(n):
+            cost += error[i] ** 2
+        cost *= 0.5
+
         ### ========== TODO : END ========== ###
         return cost
 
