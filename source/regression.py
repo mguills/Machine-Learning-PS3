@@ -116,12 +116,8 @@ class PolynomialRegression() :
 
         ### ========== TODO : START ========== ###
         # part b: modify to create matrix for simple linear model
-        print "x is:"
-        print X
 
         X = np.append(np.ones([n,1]), X, 1)
-        print "now x is:"
-        print X
 
         # part g: modify to create matrix for polynomial model
         Phi = X
@@ -258,8 +254,7 @@ class PolynomialRegression() :
         X = self.generate_polynomial_features(X) # map features
 
         ### ========== TODO : START ========== ###
-        # part c: predict y
-        y = None
+        y = dot(X, self.coef_)
         ### ========== TODO : END ========== ###
 
         return y
