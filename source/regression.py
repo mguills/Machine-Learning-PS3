@@ -116,11 +116,17 @@ class PolynomialRegression() :
 
         ### ========== TODO : START ========== ###
         # part b: modify to create matrix for simple linear model
-
-        X = np.append(np.ones([n,1]), X, 1)
+        if self.m_ == 1:
+            newX = np.append(np.ones([n,1]), X, 1)
 
         # part g: modify to create matrix for polynomial model
-        Phi = X
+        if self.m_ > 1:
+            newX = np.empty((n,self.m_+1))
+            for i in range(n):
+                for j in range(self.m_+1):
+                    newX[i][j] = X[i] ** j
+
+        Phi = newX
 
         ### ========== TODO : END ========== ###
 
