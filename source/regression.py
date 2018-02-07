@@ -230,7 +230,7 @@ class PolynomialRegression() :
         # part e: implement closed-form solution
         # hint: use np.dot(...) and np.linalg.pinv(...)
         #       be sure to update self.coef_ with your solution
-
+        self.coef_ =  np.dot(np.dot(np.linalg.pinv( np.dot(X.transpose(), X) ) , X.transpose()) , y) 
         # part j: include L_2 regularization
 
         ### ========== TODO : END ========== ###
@@ -254,7 +254,7 @@ class PolynomialRegression() :
         X = self.generate_polynomial_features(X) # map features
 
         ### ========== TODO : START ========== ###
-        y = dot(X, self.coef_)
+        y = np.dot(X, self.coef_)
         ### ========== TODO : END ========== ###
 
         return y
@@ -354,11 +354,15 @@ def main() :
 
     # test part d, bullets 2-3
     # for eta = 0.01, soln: theta = [2.441; -2.819], iterations = 616
+    start = time.time()
     model.fit_SGD(train_data.X, train_data.y, 0.01)
+    print 'elapsed SGD: ' + str(time.time() - start)
     print 'sgd solution: %s' % str(model.coef_)
 
     # test part e -- soln: theta = [2.446; -2.816]
+    start = time.time()
     model.fit(train_data.X, train_data.y)
+    print 'elapsed closed form: ' + str(time.time() - start)
     print 'closed_form solution: %s' % str(model.coef_)
 
     # non-test code (YOUR CODE HERE)
