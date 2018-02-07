@@ -116,6 +116,13 @@ class PolynomialRegression() :
 
         ### ========== TODO : START ========== ###
         # part b: modify to create matrix for simple linear model
+        print "x is:"
+        print X
+
+        X = np.append(np.ones([n,1]), X, 1)
+        print "now x is:"
+        print X
+
         # part g: modify to create matrix for polynomial model
         Phi = X
 
@@ -328,8 +335,8 @@ def main() :
 
 
     print 'Visualizing data...'
-    plot_data(train_data.X, train_data.y, color='g')
-    plot_data(test_data.X, test_data.y, color='r')
+    # plot_data(train_data.X, train_data.y, color='g')
+    # plot_data(test_data.X, test_data.y, color='r')
 
 
 
