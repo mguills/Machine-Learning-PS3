@@ -114,7 +114,6 @@ class PolynomialRegression() :
 
         n,d = X.shape
 
-        ### ========== TODO : START ========== ###
         # part b: modify to create matrix for simple linear model
         if self.m_ == 1:
             newX = np.append(np.ones([n,1]), X, 1)
@@ -128,12 +127,10 @@ class PolynomialRegression() :
 
         Phi = newX
 
-        ### ========== TODO : END ========== ###
-
         return Phi
 
 
-    def fit_SGD(self, X, y, eta=0.01,
+    def fit_SGD(self, X, y, eta=None,
                 eps=1e-10, tmax=1000000, verbose=False) :
         """
         Finds the coefficients of a {d-1}^th degree polynomial
@@ -170,19 +167,16 @@ class PolynomialRegression() :
 
         # SGD loop
         for t in xrange(tmax) :
-            ### ========== TODO : START ========== ###
             # part f: update step size
             # change the default eta in the function signature to 'eta=None'
             # and update the line below to your learning rate function
             if eta_input is None :
-                eta = None # change this line
+                eta = 0.0015 # change this line
             else :
                 eta = eta_input
-            ### ========== TODO : END ========== ###
 
             # iterate through examples
             for i in xrange(n) :
-                ### ========== TODO : START ========== ###
                 # part d: update theta (self.coef_) using one step of SGD
                 # hint: you can simultaneously update all theta using vector math
 
@@ -190,9 +184,8 @@ class PolynomialRegression() :
 
                 # track error
                 # hint: you cannot use self.predict(...) to make the predictions
-                y_pred = np.dot(X, self.coef_) # change this line
+                y_pred = np.dot(X, self.coef_)
                 err_list[t] = np.sum(np.power(y - y_pred, 2)) / float(n)
-                ### ========== TODO : END ========== ###
 
             # stop?
             if t > 0 and abs(err_list[t] - err_list[t-1]) < eps :
@@ -234,14 +227,12 @@ class PolynomialRegression() :
 
         X = self.generate_polynomial_features(X) # map features
 
-        ### ========== TODO : START ========== ###
         # part e: implement closed-form solution
         # hint: use np.dot(...) and np.linalg.pinv(...)
         #       be sure to update self.coef_ with your solution
         self.coef_ =  np.dot(np.dot(np.linalg.pinv( np.dot(X.transpose(), X) ) , X.transpose()) , y)
         # part j: include L_2 regularization
 
-        ### ========== TODO : END ========== ###
 
 
     def predict(self, X) :
@@ -261,11 +252,9 @@ class PolynomialRegression() :
 
         X = self.generate_polynomial_features(X) # map features
 
-        ### ========== TODO : START ========== ###
 
         y = np.dot(X, self.coef_)
 
-        ### ========== TODO : END ========== ###
 
         return y
 
@@ -283,16 +272,15 @@ class PolynomialRegression() :
         --------------------
             cost    -- float, objective J(theta)
         """
-        ### ========== TODO : START ========== ###
         n,d = X.shape
         cost = 0
 
+        # calculate cost using formula
         error = self.predict(X) - y
         for i in range(n):
             cost += error[i] ** 2
         cost *= 0.5
 
-        ### ========== TODO : END ========== ###
         return cost
 
 
