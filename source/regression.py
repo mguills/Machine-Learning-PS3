@@ -297,10 +297,9 @@ class PolynomialRegression() :
         --------------------
             error   -- float, RMSE
         """
-        ### ========== TODO : START ========== ###
         # part h: compute RMSE
         error = (float(2 * self.cost(X,y))/float(len(y))) ** 0.5
-        ### ========== TODO : END ========== ###
+
         return error
 
 
@@ -338,8 +337,6 @@ def main() :
     plot_data(test_data.X, test_data.y, color='r')
 
 
-
-    ### ========== TODO : START ========== ###
     # parts b-f: main code for linear regression
     print 'Investigating linear regression...'
 
@@ -359,7 +356,7 @@ def main() :
     # test part d, bullets 2-3
     # for eta = 0.01, soln: theta = [2.441; -2.819], iterations = 616
     start = time.time() # printing out time of different methods of optimization
-    model.fit_SGD(train_data.X, train_data.y, 0.01)
+    model.fit_SGD(train_data.X, train_data.y, 0.0015)
     print 'elapsed SGD: ' + str(time.time() - start)
     print 'sgd solution: %s' % str(model.coef_)
 
@@ -369,13 +366,8 @@ def main() :
     print 'elapsed closed form: ' + str(time.time() - start)
     print 'closed_form solution: %s' % str(model.coef_)
 
-    # non-test code (YOUR CODE HERE)
-
-    ### ========== TODO : END ========== ###
 
 
-
-    ### ========== TODO : START ========== ###
     # parts g-i: main code for polynomial regression
     print 'Investigating polynomial regression...'
 
