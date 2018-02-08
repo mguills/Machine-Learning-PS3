@@ -371,7 +371,7 @@ def main() :
     # test part d, bullets 2-3
     # for eta = 0.01, soln: theta = [2.441; -2.819], iterations = 616
     start = time.time()
-    model.fit_SGD(train_data.X, train_data.y, 0.01)
+    model.fit_SGD(train_data.X, train_data.y, 0.0015)
     print 'elapsed SGD: ' + str(time.time() - start)
     print 'sgd solution: %s' % str(model.coef_)
 
