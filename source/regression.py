@@ -299,7 +299,7 @@ class PolynomialRegression() :
         """
         ### ========== TODO : START ========== ###
         # part h: compute RMSE
-        error = 0
+        error = (float(2 * self.cost(X,y))/float(len(y))) ** 0.5
         ### ========== TODO : END ========== ###
         return error
 
@@ -358,8 +358,8 @@ def main() :
 
     # test part d, bullets 2-3
     # for eta = 0.01, soln: theta = [2.441; -2.819], iterations = 616
-    start = time.time()
-    model.fit_SGD(train_data.X, train_data.y, 0.0015)
+    start = time.time() # printing out time of different methods of optimization
+    model.fit_SGD(train_data.X, train_data.y, 0.01)
     print 'elapsed SGD: ' + str(time.time() - start)
     print 'sgd solution: %s' % str(model.coef_)
 
@@ -392,8 +392,31 @@ def main() :
     print model.rms_error(X, y)
 
     # non-test code (YOUR CODE HERE)
+    # part i -- Add  other values of m to generalize data
+    #zeroCost = 0
+    #for element in train_data.y:
+    #    zeroCost += (1-element) ** 2
+    #zeroCost *= 0.5
+    #print "0 degree train error: ", ((float(2 * zeroCost))/float(len(train_data.y))) ** 0.5
+#
+    #zeroCost = 0
+    #for element in test_data.y:
+    #    zeroCost += (1-element) ** 2
+    #zeroCost *= 0.5
+    #print "0 degree test error: ", (float(2 * zeroCost))/(float(len(test_data.y))) ** 0.5
+    #for i in range(1,11):
+    #    modelI = PolynomialRegression(i)
+    #    modelI.fit(train_data.X, train_data.y)
+    #    print i, " degree training error: ", modelI.rms_error(train_data.X, train_data.y)
+#
+    #for i in range(1,11):
+    #    modelJ = PolynomialRegression(i)
+    #    modelJ.fit(train_data.X, train_data.y)
+    #    print i, " degree test error: ", modelJ.rms_error(test_data.X, test_data.y)
 
     ### ========== TODO : END ========== ###
+
+
 
 
 
