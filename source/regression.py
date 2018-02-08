@@ -1,5 +1,5 @@
 """
-Author      : Yi-Chieh Wu
+Author      : Matt Guillory
 Class       : HMC CS 158
 Date        : 2018 Aug 11
 Description : Polynomial Regression
@@ -346,8 +346,8 @@ def main() :
 
 
     print 'Visualizing data...'
-    # plot_data(train_data.X, train_data.y, color='g')
-    # plot_data(test_data.X, test_data.y, color='r')
+    plot_data(train_data.X, train_data.y, color='g')
+    plot_data(test_data.X, test_data.y, color='r')
 
 
 
